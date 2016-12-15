@@ -14,6 +14,11 @@ class Webhook
         return new Response('ok', 200);
     }
 
+    public function messengerChallengeAction(Application $app, Request $request)
+    {
+        return new Response($request->query->get('hub')['challenge'], 200);
+    }
+
     /**
      * Handles all webhooks come from Messenger application
      *

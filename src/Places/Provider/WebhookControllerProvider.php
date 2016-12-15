@@ -14,6 +14,9 @@ class WebhookControllerProvider implements ControllerProviderInterface
         $controllers->get('/', 'Places\Controller\Webhook::homeAction')
                     ->bind('home');
 
+        $controllers->get('/webhook/challenge', 'Places\Controller\Webhook::messengerChallengeAction')
+                    ->bind('messengerChallenge');
+
         $controllers->post('/webhook/messenger', 'Places\Controller\Webhook::messengerAction')
                     ->bind('messenger');
 
