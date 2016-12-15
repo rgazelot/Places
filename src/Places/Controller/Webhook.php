@@ -9,6 +9,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class Webhook
 {
+    public function homeAction(Application $app)
+    {
+        return new Response('ok', 200);
+    }
+
     /**
      * Handles all webhooks come from Messenger application
      *
