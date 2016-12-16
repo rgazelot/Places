@@ -8,7 +8,7 @@ use Silex\Application as BaseApplication;
 
 use Symfony\Component\Yaml\Yaml;
 
-use Places\Provider\WebhookControllerProvider;
+use Places\Provider\MessengerControllerProvider;
 use Places\Provider\MiddlewareProvider;
 use Places\Provider\ServiceProvider;
 
@@ -21,7 +21,7 @@ class Application extends BaseApplication
         $this['debug'] = $debug;
 
         $this->registerParameters();
-        $this->mount('/', new WebhookControllerProvider);
+        $this->mount('/', new MessengerControllerProvider);
         $this->register(new MiddlewareProvider);
         $this->register(new ServiceProvider);
     }

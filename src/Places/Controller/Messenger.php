@@ -7,14 +7,14 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-class Webhook
+class Messenger
 {
     public function homeAction(Application $app)
     {
         return new Response('ok', 200);
     }
 
-    public function messengerChallengeAction(Application $app, Request $request)
+    public function challengeAction(Application $app, Request $request)
     {
         return new Response($request->query->get('hub')['challenge'], 200);
     }
@@ -24,7 +24,7 @@ class Webhook
      *
      * @see  https://developers.facebook.com/docs/messenger-platform/webhook-reference
      */
-    public function messengerAction(Application $app, Request $request)
+    public function aggregAction(Application $app, Request $request)
     {
         $entry = $request->request->get('entry');
         $instagramUrl = $entry[0]['messaging'][0]['text'];
