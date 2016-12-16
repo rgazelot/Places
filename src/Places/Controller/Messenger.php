@@ -7,15 +7,18 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+use Places\Messenger\Exception\ChallengeException;
+
 class Messenger
 {
-    public function homeAction(Application $app)
-    {
-        return new Response('ok', 200);
-    }
-
     public function challengeAction(Application $app, Request $request)
     {
+        try {
+            $app['messenger_challenge']->resolveChallenge($request);
+        } catch (ChallengeException $e) {
+            $app->abort(403);
+        }
+
         return new Response($request->query->get('hub_challenge'), 200);
     }
 
@@ -26,13 +29,8 @@ class Messenger
      */
     public function aggregAction(Application $app, Request $request)
     {
-        $entry = $request->request->get('entry');
-        $instagramUrl = $entry[0]['messaging'][0]['text'];
-        $explode = explode('/', $instagramUrl);
-        $code = array_pop($explode);
+        $app['messenger_aggreg']->aggreg($request);
 
-        $app['redis']->set($code, true);
-
-        return new Response($instagramUrl, 200);
+        return new Response(null, 200);
     }
 }

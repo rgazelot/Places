@@ -1,6 +1,6 @@
 <?php
 
-namespace Places\Provider;
+namespace Places\Controller\Provider;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;

@@ -8,8 +8,9 @@ use Silex\Application as BaseApplication;
 
 use Symfony\Component\Yaml\Yaml;
 
-use Places\Provider\MessengerControllerProvider;
-use Places\Provider\MiddlewareProvider;
+use Places\Controller\Provider\ControllerProvider;
+use Places\Controller\Provider\MiddlewareProvider;
+use Places\Messenger\Provider\MessengerServiceProvider;
 use Places\Provider\ServiceProvider;
 
 class Application extends BaseApplication
@@ -21,9 +22,10 @@ class Application extends BaseApplication
         $this['debug'] = $debug;
 
         $this->registerParameters();
-        $this->mount('/', new MessengerControllerProvider);
+        $this->mount('/', new ControllerProvider);
         $this->register(new MiddlewareProvider);
         $this->register(new ServiceProvider);
+        $this->register(new MessengerServiceProvider);
     }
 
     private function registerParameters()

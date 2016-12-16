@@ -1,18 +1,15 @@
 <?php
 
-namespace Places\Provider;
+namespace Places\Controller\Provider;
 
 use Silex\Application;
 use Silex\Api\ControllerProviderInterface;
 
-class MessengerControllerProvider implements ControllerProviderInterface
+class ControllerProvider implements ControllerProviderInterface
 {
     public function connect(Application $app)
     {
         $controllers = $app['controllers_factory'];
-
-        $controllers->get('/', 'Places\Controller\Messenger::homeAction')
-                    ->bind('home');
 
         $controllers->get('/webhook/messenger', 'Places\Controller\Messenger::challengeAction')
                     ->bind('challenge');
