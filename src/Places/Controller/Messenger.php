@@ -16,7 +16,7 @@ class Messenger
 
     public function challengeAction(Application $app, Request $request)
     {
-        return new Response($request->query->get('hub')['challenge'], 200);
+        return new Response($request->query->get('hub_challenge'), 200);
     }
 
     /**
