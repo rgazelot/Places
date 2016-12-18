@@ -15,9 +15,5 @@ class MessengerServiceProvider implements ServiceProviderInterface
         $app['messenger_challenge'] = function ($app) {
             return new Challenge($app['parameters']['webhook_messenger_verify_token']);
         };
-
-        $app['messenger_aggreg'] = function ($app) {
-            return new Aggreg($app['redis']);
-        };
     }
 }

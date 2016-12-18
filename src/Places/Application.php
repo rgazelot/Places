@@ -11,6 +11,7 @@ use Symfony\Component\Yaml\Yaml;
 use Places\Controller\Provider\ControllerProvider;
 use Places\Controller\Provider\MiddlewareProvider;
 use Places\Messenger\Provider\MessengerServiceProvider;
+use Places\Instagram\Provider\InstagramServiceProvider;
 use Places\Provider\ServiceProvider;
 
 class Application extends BaseApplication
@@ -26,6 +27,7 @@ class Application extends BaseApplication
         $this->register(new MiddlewareProvider);
         $this->register(new ServiceProvider);
         $this->register(new MessengerServiceProvider);
+        $this->register(new InstagramServiceProvider);
     }
 
     private function registerParameters()

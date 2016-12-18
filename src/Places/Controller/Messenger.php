@@ -29,7 +29,11 @@ class Messenger
      */
     public function aggregAction(Application $app, Request $request)
     {
-        $app['messenger_aggreg']->aggreg($request);
+        // @todo If I want to use some new providers, do a switch on the url matching.
+        $shortCode = $app['instagram']->getShortCodeFromRequest($request);
+        $media = $app['instagram']->getMediaFromShortCode($shortCode);
+        $app['instagram']->persist($media);
+
 
         return new Response(null, 200);
     }
